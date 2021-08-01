@@ -215,6 +215,7 @@ def quick_dirty_test_semitone_above():
         (note, expected) = Note.from_string(note), Note.from_string(expected)
         assert note.semitone_above() == expected
 
+# TODO write a proper datatype and parser for scales
 def normalize_scale_name(name: str) -> str:
     if name == "chromatic":
         return name
@@ -225,7 +226,11 @@ def normalize_scale_name(name: str) -> str:
             return name[0].upper() + " " + "minor"
         else:
             # eg "f major", "F major", "c minor"
-            [letter, quality] = name.split()
+            try:
+                [letter, quality] = name.split()
+            except ValueError as e:
+                # the name is invalid - this will be handled in main
+                return name
             return " ".join([letter.upper(), quality])
 
 
