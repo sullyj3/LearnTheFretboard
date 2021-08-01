@@ -239,7 +239,7 @@ def main():
     args.scale = args.scale.lower()
     args.scale = normalize_scale_name(args.scale)
 
-    # todo: minor scales, scales starting on accidentals
+    # todo: scales starting on accidentals
     if args.scale in SCALES:
         scale = SCALES[args.scale]
     else:
